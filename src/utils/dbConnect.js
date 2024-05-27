@@ -1,11 +1,17 @@
-import mongoose from 'mongoose'
+import { MongoClient } from 'mongodb'
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO.URI)
-    console.log('DB connected')
-  } catch (error) {
-    console.log('db connecting error', error)
+let cashedDB
+
+export async function connectToDatabase() {
+  if (cashedDB) {
+    return cashedDB
   }
+
+  let client = new MongoClient(process.env.MONGODB_URL)
+
+  await client.connect()
+
+  cashedDB = client.db('blogs')
+
+  return cashedDB
 }
-export default connectDB
