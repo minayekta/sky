@@ -1,6 +1,7 @@
+import { NextResponse } from 'next/server'
 import { connectToDatabase } from '../../../utils/dbConnect'
 export async function GET(req, res) {
-  res.status(200).json({ message: 'welcome' })
+  return NextResponse.status(200).json({ message: 'welcome' })
 }
 
 export async function POST(req, res) {
@@ -10,8 +11,8 @@ export async function POST(req, res) {
       throw new error('محتوا نباید خالی باشه')
     }
     const db = await connectToDatabase()
-    db.collection('posts').insertOne({ content, createdAt: new Date() })
+    await db.collection('posts').insertOne({ content, createdAt: new Date() })
   } catch (err) {
-    res.status(400).json(err.message)
+    return NextResponse.status(400).json(err.message)
   }
 }
