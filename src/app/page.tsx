@@ -41,10 +41,11 @@ export default function Home() {
     try {
       const response = await fetch('http://localhost:3000/api/post', {
         method: 'POST',
-        body: JSON.stringify({ content: inputValue }),
+        body: JSON.stringify({ title, description }),
         headers: { 'Content-Type': 'application/json' },
       })
       const res = await response.json()
+      console.log(res)
       if (!response.ok) {
         console.error(res)
         setError('An error occurred while creating the post.')

@@ -7,7 +7,7 @@ export async function connectToDatabase() {
     return cashedDB
   }
 
-  let client = new MongoClient(process.env.MONGODB_URL)
+  let client = new MongoClient('mongodb://localhost:27017')
 
   await client.connect()
 
