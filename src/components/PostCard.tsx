@@ -19,7 +19,7 @@ function PostCard(postData: postData | any) {
           <h3 className="text-gray-800 pb-3">{postData.title}</h3>
           <p>{postData.description}</p>
         </div>
-        <Link href={`/blog/${postData.id}`} className="px-3 py-2 text-white bg-blue-700 mt-2">
+        <Link href={`/post/${postData.id}`} className="px-3 py-2 text-white bg-blue-700 mt-2">
           Details
         </Link>
       </div>
